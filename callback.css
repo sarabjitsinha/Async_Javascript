@@ -1,0 +1,9 @@
+p {
+    display: flex;
+    font-size: xx-large;
+    font-weight: 900;
+    font-family: cursive;
+    font-variant: small-caps;
+    justify-content: center;
+}
+

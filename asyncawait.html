@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+    <link rel="shortcut icon" href="asawait.jpg" type="image/x-icon">
+    <link rel="stylesheet" href="/src/output.css">
+    <title>Async await</title>
+    <style>
+        body{
+            background-color: rgba(127, 255, 255, 0.952);
+        }
+        button{
+            border: 2px solid orchid;
+            border-radius: 20px;
+            background-color: blueviolet;
+        }
+    </style>
+</head>
+<body >
+    <h1 class="flex font-extrabold text-xl text-purple-500 bg-blue-900 justify-center border-2">Welcome to Async Await Program</h1>
+    <button type="submit" id="asyncbutton" onclick="asyncawait()">Click here to see the change</button>
+    <div class="border-4 border-purple-700 bg-green-600">
+        <ul></ul>
+        <script>
+            async function asyncawait() {
+                    document.querySelector('ul').insertAdjacentText("afterbegin","Loading")
+                try {
+                     await  axios.get("https://dummyjson.com/posts")
+                     .then((data)=>{
+                        var date1=Date.now();
+                        var date2;
+                        var datediff;
+                        const asyncarray=data.data.posts;
+                            date2=Date.now();
+                            datediff=date2-date1;
+                            if(datediff>5000)
+                            {document.querySelector('ul').insertAdjacentText("afterbegin","Delayed operation , aborting..") }
+                            else {
+                            asyncarray.forEach(element => {
+                                const axval=`<li>${element.title} </li>`;
+                                document.querySelector('ul').insertAdjacentHTML("afterbegin",axval)
+                                    })
+                                }; 
+                            })
+                            .finally(console.log("Thank You For Using the services")); 
+                } 
+                catch (error) 
+                {
+                  console.log(error);
+                    
+                }
+                           
+            }
+            
+        </script>
+</div>
+    
+</body>
+</html>
